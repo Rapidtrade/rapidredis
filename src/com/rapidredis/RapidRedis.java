@@ -19,7 +19,7 @@ public class RapidRedis {
 		Statement stmt = null;
 		Logging.init();
 		Logging.logInfo("Initialte JPOOL");
-		jpool = new JedisPool(new JedisPoolConfig(), "localhost");
+		jpool = new JedisPool(new JedisPoolConfig(), "redis.rapidtrade.biz");
 		
 		try {
 			
@@ -31,6 +31,7 @@ public class RapidRedis {
 			ResultSet rs = cs.executeQuery();
 			CacheData cache = new CacheData();
 			Jedis jedis = jpool.getResource();
+			jedis.auth(Properties.getInstance().get("redispassword"));
 			int lastVersion = jedis.exists("LastVersion") ? Integer.parseInt(jedis.get("LastVersion")) : 0;
 			
 			while(rs.next()){	

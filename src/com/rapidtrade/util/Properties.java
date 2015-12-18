@@ -12,7 +12,7 @@ public class Properties {
 		try {
 			String path = "/etc/rapidredis/";
 			InputStream input = null;
-			File f = new File("bRapidRedis.properties");
+			File f = new File("RapidRedis.properties");
 			if (!f.exists()){
 				f = new File(path + "RapidRedis.properties");
 				if (!f.exists()) System.out.println(path + "RapidRedis.properties no found");
